@@ -1,7 +1,13 @@
 FROM debian:bookworm
 
-RUN apt-get update && apt-get install mariadb-server -y
+RUN apt-get update && \
+    apt-get install -y mariadb-server && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN rm -rf /var/lib/apt/lists/*
+COPY tools/init.sh /init.sh
 
-CMD service mariadb start
+RUN chmod +x /init.sh
+
+EXPOSE 3306
+
+CMD ["/init.sh"]
