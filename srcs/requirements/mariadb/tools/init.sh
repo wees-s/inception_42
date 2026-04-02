@@ -1,17 +1,14 @@
 #!/bin/bash
 set -e
 
-mysqld_safe &
-
-echo "Waiting for MariaDB..."
-sleep 5
-
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     echo "Initializing database..."
-
     mysql_install_db --user=mysql --datadir=/var/lib/mysql
 fi
 
+mysqld_safe &
+
+echo "Waiting for MariaDB..."
 until mysqladmin ping --silent; do
     sleep 1
 done
