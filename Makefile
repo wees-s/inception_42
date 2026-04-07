@@ -1,9 +1,8 @@
-NAME = inception
+NAME = inceptionLS
 
 COMPOSE = sudo docker compose
 ENV_FILE = srcs/.env
 
-# carrega variáveis do .env
 include $(ENV_FILE)
 export
 

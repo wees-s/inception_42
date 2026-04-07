@@ -20,6 +20,9 @@ RUN curl -O https://wordpress.org/latest.tar.gz \
     && tar -xvf latest.tar.gz --strip-components=1 \
     && rm latest.tar.gz
 
+RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x /usr/local/bin/wp
+
 # Permissões corretas (evita 403)
 RUN chown -R www-data:www-data /var/www/html
 
